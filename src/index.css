@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Littoral Design System - Bernstein-Serial-Medium, brand #2c542f */
+
+/* Optional: add your Bernstein-Serial-Medium font file (e.g. .woff2) in public/fonts/ and uncomment:
+@font-face {
+  font-family: 'Bernstein-Serial-Medium';
+  src: url('/fonts/Bernstein-Serial-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+*/
+
+@layer base {
+  :root {
+    /* Brand - Littoral green #2c542f */
+    --brand: 123 31% 25%;
+    --font-brand: 'Bernstein-Serial-Medium', 'Bernstein Serial Medium', Georgia, serif;
+    /* Core brand colors - Warm palette, default BG #eae3d9 */
+    --background: 35 29% 88%;
+    --foreground: 210 11% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+
+    /* Primary - Swiggy Orange */
+    --primary: 27 97% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Soft warm gray */
+    --secondary: 30 10% 96%;
+    --secondary-foreground: 210 11% 25%;
+
+    /* Muted - Light backgrounds */
+    --muted: 30 15% 95%;
+    --muted-foreground: 210 8% 45%;
+
+    /* Accent - Light orange tint */
+    --accent: 27 100% 97%;
+    --accent-foreground: 27 97% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 15% 90%;
+    --input: 30 15% 90%;
+    --ring: 27 97% 54%;
+
+    --radius: 1rem;
+
+    /* Custom colors for tags and badges */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    /* Food-specific colors */
+    --healthy: 142 71% 45%;
+    --millet: 38 92% 50%;
+    --bestseller: 0 84% 60%;
+    --traditional: 262 83% 58%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.08), 0 2px 4px -2px hsl(0 0% 0% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+    --shadow-hover: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
+
+    /* Sidebar variables (keeping defaults) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 27 97% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 27 100% 97%;
+    --sidebar-accent-foreground: 27 97% 40%;
+    --sidebar-border: 30 15% 90%;
+    --sidebar-ring: 27 97% 54%;
+  }
+
+  .dark {
+    --background: 210 11% 10%;
+    --foreground: 30 15% 95%;
+
+    --card: 210 11% 12%;
+    --card-foreground: 30 15% 95%;
+
+    --popover: 210 11% 12%;
+    --popover-foreground: 30 15% 95%;
+
+    --primary: 27 97% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 11% 18%;
+    --secondary-foreground: 30 15% 95%;
+
+    --muted: 210 11% 18%;
+    --muted-foreground: 210 8% 60%;
+
+    --accent: 27 60% 20%;
+    --accent-foreground: 27 100% 70%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 11% 20%;
+    --input: 210 11% 20%;
+    --ring: 27 97% 54%;
+
+    --sidebar-background: 210 11% 10%;
+    --sidebar-foreground: 30 15% 95%;
+    --sidebar-primary: 27 97% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 27 60% 20%;
+    --sidebar-accent-foreground: 27 100% 70%;
+    --sidebar-border: 210 11% 20%;
+    --sidebar-ring: 27 97% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Gradient overlays */
+  .gradient-overlay {
+    background: linear-gradient(to bottom, transparent 0%, hsl(var(--background) / 0.8) 100%);
+  }
+
+  /* Hero gradient */
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(27 100% 97%) 0%, hsl(30 100% 95%) 50%, hsl(27 90% 92%) 100%);
+  }
+
+  /* Orange gradient for buttons and highlights */
+  .primary-gradient {
+    background: linear-gradient(135deg, hsl(27 97% 54%) 0%, hsl(20 95% 50%) 100%);
+  }
+
+  /* Badge animations */
+  .badge-pulse {
+    animation: pulse-badge 2s infinite;
+  }
+
+  @keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* Smooth scrolling */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Image shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Slide up animation */
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scale in animation */
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
