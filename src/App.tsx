@@ -25,6 +25,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+        <BrowserRouter basename="/LittoralWEB">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
