@@ -108,7 +108,7 @@ const Products: React.FC = () => {
         </div>
 
         <div className="container py-8">
-          <div className="flex gap-8">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Filters Sidebar */}
             <ProductFilters
               selectedCategories={selectedCategories}
@@ -123,7 +123,7 @@ const Products: React.FC = () => {
             />
 
             {/* Products Grid */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               {/* Search & Controls */}
               <div className="flex flex-col sm:flex-row gap-4 mb-6">
                 <div className="relative flex-1">
@@ -138,29 +138,49 @@ const Products: React.FC = () => {
                 </div>
                 
                 <div className="flex items-center gap-2">
-                  <div className="flex border border-border rounded-lg overflow-hidden">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setViewMode('grid')}
+                  <div
+                    className="flex border border-border rounded-lg overflow-hidden"
+                    role="group"
+                    aria-label="View mode"
+                    onClick={(e) => {
+                      const target = e.target as HTMLElement;
+                      const button = target.closest('button[data-view]');
+                      if (button) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const mode = (button as HTMLButtonElement).dataset.view as 'grid' | 'list';
+                        setViewMode(mode);
+                      }
+                    }}
+                  >
+                    <button
+                      type="button"
+                      data-view="grid"
                       className={cn(
-                        "rounded-none",
-                        viewMode === 'grid' && "bg-primary text-primary-foreground"
+                        "inline-flex items-center justify-center h-10 w-10 rounded-none border-0 bg-transparent cursor-pointer",
+                        "hover:bg-accent hover:text-accent-foreground",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                        viewMode === 'grid' && "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                       )}
+                      aria-pressed={viewMode === 'grid'}
+                      aria-label="Grid view"
                     >
-                      <Grid3X3 className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setViewMode('list')}
+                      <Grid3X3 className="h-4 w-4 shrink-0" />
+                    </button>
+                    <button
+                      type="button"
+                      data-view="list"
                       className={cn(
-                        "rounded-none",
-                        viewMode === 'list' && "bg-primary text-primary-foreground"
+                        "inline-flex items-center justify-center h-10 w-10 rounded-none border-0 bg-transparent cursor-pointer",
+                        "hover:bg-accent hover:text-accent-foreground",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                        viewMode === 'list' && "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                       )}
+                      aria-pressed={viewMode === 'list'}
+                      aria-label="List view"
                     >
-                      <List className="h-4 w-4" />
-                    </Button>
+                      <List className="h-4 w-4 shrink-0" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -173,9 +193,9 @@ const Products: React.FC = () => {
               {/* Products */}
               {filteredProducts.length > 0 ? (
                 <div className={cn(
-                  "grid gap-6",
+                  "grid gap-4 sm:gap-6",
                   viewMode === 'grid' 
-                    ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3" 
+                    ? "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
                     : "grid-cols-1"
                 )}>
                   {filteredProducts.map(product => (
@@ -183,6 +203,7 @@ const Products: React.FC = () => {
                       key={product.id}
                       product={{ ...product, image: getProductImage(product.id) }}
                       onViewDetails={setSelectedProduct}
+                      variant={viewMode}
                     />
                   ))}
                 </div>

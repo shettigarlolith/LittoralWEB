@@ -189,7 +189,7 @@ const Home: React.FC = () => {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               {bestSellers.slice(0, 4).map(product => (
                 <ProductCard 
                   key={product.id} 
