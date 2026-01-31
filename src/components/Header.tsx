@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
           aria-label="Home"
         >
           <img
-            src="/logo.svg"
+            src={`${import.meta.env.BASE_URL}logo.svg`}
             alt="Littoral"
             className="h-10 md:h-20 w-auto object-contain"
           />
